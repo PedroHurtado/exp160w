@@ -1,6 +1,7 @@
 let audioContext;
 
 export async function startContext(stream) {
+  const socket = new WebSocket('ws://localhost:8080');
   audioContext = new AudioContext();
   await audioContext.audioWorklet.addModule("audioworklet.js");
 
@@ -36,7 +37,7 @@ export async function startContext(stream) {
   //audioProcessorNode.connect(audioContext.destination)
 
   audioProcessorNode.port.onmessage = ({ data }) => {
-    console.log(data);
+    socket.send(data)
   };
 }
 export async function closeContext() {

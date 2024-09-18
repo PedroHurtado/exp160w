@@ -3,6 +3,7 @@ const start = document.getElementById("start");
 const stop = document.getElementById("stop");
 let localStream;
 start.addEventListener("click", () => {
+  
   start.setAttribute("disabled", "");
   stop.removeAttribute("disabled");
   captureUserMedia();
